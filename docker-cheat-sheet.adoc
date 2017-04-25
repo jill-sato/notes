@@ -1,8 +1,9 @@
 = A Docker cheat sheet
-Jill Sato
 :toc:
 :toc-placement: preamble
 :toc-title: pass:[<b>Table of Contents</b>]
+
+Some notes on docker to help with redfish memory.
 
 == Docker concepts
 
