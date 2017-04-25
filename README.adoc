@@ -1,3 +1,22 @@
 = Notes
 
 A bunch of notes to remember stuff :)
+
+== Install asciidoctor and asciidoctor-pdf locally
+
+`gem install asciidoctor asciidoctor-pdf coderay pygments.rb`
+
+== Render asciidoc to HTML5 locally
+
+`asciidoctor file.adoc`
+
+== Render asciidoc to PDF locally
+
+`asciidoctor-pdf file.adoc`
+
+== Links
+
+* http://asciidoctor.org/docs/asciidoc-syntax-quick-reference[Syntax Reference]
+* http://asciidoctor.org/docs/render-documents/[Render documents documentation]
+* http://asciidoctor.org/docs/convert-asciidoc-to-pdf/[Render PDF documentation]
+
