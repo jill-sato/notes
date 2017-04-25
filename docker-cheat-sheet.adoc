@@ -47,12 +47,15 @@ When containers will be created from that image, this will be used for automatic
 This is the process that docker will stand up.
 The container will be "running" as long as the process is up.
 
-== Image name
+=== Image name
 
-TODO repo, tag/version are encoded in the name
-repo/image:tag
+NOTE: TODO
 
-== A container is one process
+Explain how repo, tag/version are encoded in the name
+
+ repo/image:tag
+
+=== A container is one process
 
 The Dockerfile does not allow more than one process.
 Even though it's effectively possible to run more than one process inside a container
@@ -71,17 +74,32 @@ Unless a specific uid/gid is specified when creating the container:
 
  docker run -u uid:gid my_image
 
-== Networking
+=== Networking
 
-TODO
+NOTE: TODO
 
-public port vs private port
-host IP vs container IP
-containers subnet
+Explain how container use their own virtual network interface on a "private" subnet.
+Explain how this means that the container port is not reachable from outside the docker host.
+Explain how docker can map port from the host to the container to solve that.
 
---net [host|bridge|none]
+Explain the different types of networks (host,bridge,none).
+Explain how containers can talk together within a host, and mention solutions/products used to make containers communicate across hosts.
 
-== Filesystem
+ docker run --net [host|bridge|none]
+
+=== Docker clusters
+
+Explain how it's possible to build clusters of docker hosts and manage them as pool of resources.
+One can create a container in the cluster, without having to care where it's running.
+The "docker cluster" is responsible for placing containers and managing available resources.
+
+See also:
+
+* Docker swarm
+* AWS ECS
+* Kubernetes
+
+=== Filesystem
 
 The container has its own copy-on-write filesystem from the image filesystem.
 This means full freedom inside the container :)
@@ -135,7 +153,18 @@ Use `docker help` to list all available commands and `docker help CMD` to get he
 
 == Common use cases
 
-* Run a container with port mapping, volumes and environment
-* Get a shell prompt inside a container
-* Tail the output of a container
-* Find the IP address of a container
+=== Run a container with ports, volumes and environment
+
+NOTE: TODO
+
+=== Get a shell prompt inside a container
+
+NOTE: TODO
+
+=== Tail the output of a container
+
+NOTE: TODO
+
+=== Find the IP address of a container
+
+NOTE: TODO
