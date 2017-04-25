@@ -1,7 +1,7 @@
 = A Docker cheat sheet
 :toc:
 :toc-placement: preamble
-:toc-title: pass:[<b>Table of Contents</b>]
+:toc-title: pass:[Table of Contents]
 
 Some notes on docker to help with redfish memory.
 
