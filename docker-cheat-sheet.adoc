@@ -1,0 +1,136 @@
+= A Docker cheat sheet
+
+== Docker concepts
+
+Docker provides mainly three features:
+
+* Network isolation
+* File system isolation
+* Packaging in the form of images
+
+One doesn't "run" images. Images are static.
+
+"Running" a docker image is actually done by creating a docker container from an image.
+
+=== Dockerfile
+
+Dockerfile is the `makefile` for docker images.
+It uses a declarative syntax to describe the image.
+
+* Declare the maintainer of the image
+
+ MAINTAINER John Doe
+
+* Declare the parent image
+
+ FROM ubuntu:latest
+
+* Execute commands
+
+ RUN apt-get install curl -y
+
+* Declare the port used
+
+ EXPOSE 9998
+
+When containers will be created from that image, this will be used for automatic port mapping.
+
+* Declare the entrypoint
+
+ ENTRYPOINT [ "/app/entrypoint.sh" ]
+
+This is the process that docker will stand up.
+The container will be "running" as long as the process is up.
+
+== Image name
+
+TODO repo, tag/version are encoded in the name
+repo/image:tag
+
+== A container is one process
+
+The Dockerfile does not allow more than one process.
+Even though it's effectively possible to run more than one process inside a container
+we should think of containers like processes running in their own sandboxes.
+
+E.g. run the database and the application in separate containers and make them work together.
+
+One can choose to make that process a script in order to run multiple processes.
+However this does not change the way docker operates, all these processes would be children of the script.
+If the script process dies, the containers dies as well including all children processes.
+
+This is very similar to the init process on UNIX. Did you ever try killing it ? ;)
+
+The process is usually run as root inside the container.
+Unless a specific uid/gid is specified when creating the container:
+
+ docker run -u uid:gid my_image
+
+== Networking
+
+TODO
+
+public port vs private port
+host IP vs container IP
+containers subnet
+
+--net [host|bridge|none]
+
+== Filesystem
+
+The container has its own copy-on-write filesystem from the image filesystem.
+This means full freedom inside the container :)
+
+It is possible to mount volumes from the host into the container.
+
+This way a container could write/read files directly from the host filesystem.
+
+ docker run -v /path/in/host:/path/in/container my_image
+
+== Docker commands
+
+The docker command line is very friendly.
+
+Use `docker help` to list all available commands and `docker help CMD` to get help for a specific command.
+
+
+* Build an image
+
+ docker build
+ 
+* Create a container
+
+ docker run
+ 
+* Execute a command in a running container
+ 
+ docker exec
+
+* List containers
+
+ docker ps
+
+* Delete containers
+
+ docker rm
+
+* Delete images
+
+ docker rmi
+
+* Introspect a container
+
+ docker inspect
+
+* Copy files to a container
+
+ docker
+
+* Get the stdout and stderr from a container
+
+== Common use cases
+
+* Run a container with port mapping, volumes and environment
+* Get a shell prompt inside a container
+* Tail the output of a container
+* Find the IP address of a container
